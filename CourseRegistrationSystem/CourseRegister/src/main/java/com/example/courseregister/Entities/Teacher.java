@@ -1,9 +1,12 @@
 package com.example.courseregister.Entities;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 
@@ -13,8 +16,10 @@ import java.util.List;
 @Entity
 @Table(name="teacher")
 
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 
-public class Teacher {
+public class Teacher implements Serializable {
 
         @Id
         @GeneratedValue(strategy =  GenerationType.IDENTITY)
@@ -32,20 +37,11 @@ public class Teacher {
 
 
         @OneToMany(mappedBy = "teacher",
-                fetch=FetchType.EAGER, cascade = {CascadeType.DETACH,CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-        private List<CourseOne> course;
+                fetch=FetchType.LAZY, cascade = {CascadeType.DETACH,CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+        private List<Course> course;
 
 
-        //exclude List<Course> course to prevent toString going into loop
-        @Override
-        public String toString() {
-                return "Teacher{" +
-                        "id=" + id +
-                        ", firstName='" + firstName + '\'' +
-                        ", lastName='" + lastName + '\'' +
-                        ", email='" + email + '\'' +
-                        '}';
-        }
+
 
         public Teacher(String firstName, String lastName, String email) {
                 this.firstName = firstName;

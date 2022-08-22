@@ -12,7 +12,7 @@ public interface apiService {
 
 @GetMapping(value = "/student")
 @Headers(value = "Content-Type: application/json")
-List<Object> getAll();
+List<Student> getAll();
 
 @GetMapping(value ="/student/{id}")
 public Student getById(@PathVariable int id);

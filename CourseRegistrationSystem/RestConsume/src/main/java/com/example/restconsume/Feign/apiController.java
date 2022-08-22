@@ -18,8 +18,8 @@ public class apiController implements apiService{
     private apiService proxy;
 
     @Override
-    public List<Object> getAll() {
-        List<Object> all = proxy.getAll();
+    public List<Student> getAll() {
+        List<Student> all = proxy.getAll();
         return all;
     }
 
