@@ -38,10 +38,9 @@ public class RController {
     }
 
     @GetMapping("/course")
-    public List<Object> getCourseAll(){
-        List<Object> all = Collections.singletonList(IC.findAll());
-        System.out.println(all);
-        return all;
+    public List<Course> getCourseAll(){
+        List<Course> course = IC.findAll();
+        return course;
     }
 
     @GetMapping("/teacher")

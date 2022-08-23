@@ -1,8 +1,5 @@
 package com.example.courseregister.Entities;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 import lombok.*;
 
 import javax.persistence.*;
@@ -15,9 +12,6 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name="teacher")
-
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id")
 
 public class Teacher implements Serializable {
 
@@ -36,9 +30,9 @@ public class Teacher implements Serializable {
         private String email;
 
 
-        @OneToMany(mappedBy = "teacher",
-                fetch=FetchType.LAZY, cascade = {CascadeType.DETACH,CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-        private List<Course> course;
+//        @OneToMany(mappedBy = "teacher",
+//                fetch=FetchType.LAZY, cascade = {CascadeType.DETACH,CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+//        private List<Course> course;
 
 
 

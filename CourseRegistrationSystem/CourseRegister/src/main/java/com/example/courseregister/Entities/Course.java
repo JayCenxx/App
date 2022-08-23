@@ -38,8 +38,6 @@ public class Course implements Serializable {
     }
 
 
-    //    establish a manytomany relationship,jointable using FK, and DI to student
-//    SOLVE THE PROBLEM WITH FAILED T
     @ManyToMany(mappedBy = "courseList",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<Student> student;
 
@@ -56,6 +54,7 @@ public class Course implements Serializable {
           teacher=t;
     }
 
+    //add a student to a course
     public void setStudent(Student s){
         if(student==null)
             student=new ArrayList<>();

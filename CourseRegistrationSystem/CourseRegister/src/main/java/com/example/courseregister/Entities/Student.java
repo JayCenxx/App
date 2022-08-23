@@ -31,11 +31,11 @@ private String firstName;
 @Column(name="last_name")
 private String lastName;
 
-
+//
 //@Column(name="email")
 //private String email;
 
-
+    @JsonIdentityReference
 @ManyToMany(fetch=FetchType.LAZY,  cascade = {CascadeType.DETACH,CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
 @JoinTable(name="student_has_course",
         joinColumns = @JoinColumn(name="student_idstudent"),
