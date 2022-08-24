@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>course</title>
+</head>
+<body>
+<h2> Here are all the course availiable</h2>
+<hr>
+
+<!--shopping cart button-->
+<a th:insert="courseH::shoppingcart"/>
+
+<Table>
+<div th:include="courseH::courseList"/>
+
+
+<tr th:each="a:${courses}">
+    <td th:text="${a.courseName}"/>
+    <td th:text="${a.teacher.firstName} +' '+ ${a.teacher.lastName}"/>
+</tr>
+</Table>
+</body>
+</html>

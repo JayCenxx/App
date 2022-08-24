@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View Course</title>
+</head>
+<body>
+
+<h2>Registered Courses:</h2>
+<a th:href="@{/course/searCourse}">  <input type="button" value="Search Courses"> </a>
+
+<a th:insert="courseH::shoppingcart"/>
+
+
+<Table >
+    <div th:include="courseH::courseList"/>
+
+<tr th:each="a:${student.getCourseList()}">
+    <td th:text="${a.courseName}"/>
+    <td th:text="${a.teacher.firstName} +' '+ ${a.teacher.lastName}"/>
+</tr>
+
+    </Table>
+
+
+</body>
+</html>

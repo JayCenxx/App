@@ -26,8 +26,8 @@ public class apiController implements apiService{
 
     @GetMapping("/{id}")
     @Override
-    public Student getById(@PathVariable int id) {
-        Student student = proxy.getById(id);
+    public Student getStudentById(@PathVariable int id) {
+        Student student = proxy.getStudentById(id);
         return student;
     }
 

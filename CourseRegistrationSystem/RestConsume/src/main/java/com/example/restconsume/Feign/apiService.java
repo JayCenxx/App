@@ -16,7 +16,7 @@ public interface apiService {
  List<Student> getAll();
 
 @GetMapping(value ="/student/{id}")
-public Student getById(@PathVariable int id);
+public Student getStudentById(@PathVariable int id);
 
     @GetMapping(value = "/course")
     @Headers(value = "Content-Type: application/json")

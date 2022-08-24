@@ -31,7 +31,7 @@ public class RController {
     }
 
     @GetMapping("/student/{id}")
-    public Student getAll(@PathVariable int id){
+    public Student getStudentById(@PathVariable int id){
         Student student = IS.findById(id).get();
         System.out.println(student);
     return student;
