@@ -13,9 +13,10 @@ import java.util.List;
 
 @Controller
 @SessionAttributes("List")
+@Scope("session")
 public class shoppingCart {
 
-    List<Student> studentList;
+
 
 @ModelAttribute("List")
 public List<Student> test(){
@@ -31,6 +32,7 @@ public String setSession(Model m){
 
 @GetMapping("/student")
     public String getSession(@RequestParam String fname,@RequestParam String lname,Model m){
+    List<Student> studentList= (List<Student>) m.getAttribute("List");
     Student student = new Student(fname, lname);
     studentList.add(student);
     m.addAttribute("List",studentList);

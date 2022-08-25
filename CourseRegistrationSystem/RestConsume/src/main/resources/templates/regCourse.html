@@ -13,11 +13,17 @@
 
 
 <Table >
+
+<!--    th-->
     <div th:include="courseH::courseList"/>
+<th>Action:</th>
 
 <tr th:each="a:${student.getCourseList()}">
     <td th:text="${a.courseName}"/>
     <td th:text="${a.teacher.firstName} +' '+ ${a.teacher.lastName}"/>
+    <td>
+        <input type="button" value="Drop Courses">
+    </td>
 </tr>
 
     </Table>

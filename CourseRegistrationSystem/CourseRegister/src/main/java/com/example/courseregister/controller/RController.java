@@ -5,6 +5,9 @@ import com.example.courseregister.Entities.Student;
 import com.example.courseregister.Repo.ICourse;
 import com.example.courseregister.Repo.IStudentRepo;
 import com.example.courseregister.Repo.ITeacher;
+import com.example.courseregister.Service.courService;
+import com.example.courseregister.Service.stuService;
+import com.example.courseregister.Service.teaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,36 +19,36 @@ import java.util.List;
 @RestController
 public class RController {
     @Autowired
-    IStudentRepo IS;
+    stuService IS;
 
     @Autowired
-    ICourse IC;
+    courService IC;
 
     @Autowired
-    ITeacher IT;
+    teaService IT;
 
     @GetMapping("/student")
     public List<Student> getAll(){
-        List<Student> all = IS.findAll();
+        List<Student> all = IS.findStudentAll();
         return all;
     }
 
     @GetMapping("/student/{id}")
     public Student getStudentById(@PathVariable int id){
-        Student student = IS.findById(id).get();
+        Student student = IS.findStudentById(id);
         System.out.println(student);
     return student;
     }
 
     @GetMapping("/course")
     public List<Course> getCourseAll(){
-        List<Course> course = IC.findAll();
+        List<Course> course = IC.getCourseAll();
         return course;
     }
 
     @GetMapping("/teacher")
     public List<Object> getTeacherAll(){
-        List<Object> all = Collections.singletonList(IT.findAll());
+        List<Object> all = Collections.singletonList(IT.getTeacherAll());
         System.out.println(all);
         return all;
     }

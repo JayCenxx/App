@@ -1,4 +1,4 @@
-package com.example.restconsume.RestTemplate;
+package RestTemplate;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;

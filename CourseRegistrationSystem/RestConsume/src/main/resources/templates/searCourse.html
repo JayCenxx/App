@@ -5,20 +5,29 @@
     <title>course</title>
 </head>
 <body>
-<h2> Here are all the course availiable</h2>
+<h2> Here are all the courses availiable</h2>
 <hr>
 
 <!--shopping cart button-->
 <a th:insert="courseH::shoppingcart"/>
 
 <Table>
+<!--    th-->
 <div th:include="courseH::courseList"/>
-
+<th>Action:</th>
 
 <tr th:each="a:${courses}">
     <td th:text="${a.courseName}"/>
     <td th:text="${a.teacher.firstName} +' '+ ${a.teacher.lastName}"/>
+    <td>
+        <a th:href="@{/course/setshopping/{sid}/{cid} (sid=${student.id}, cid=${a.id})} ">
+            <input type="button" value="Add Course">
+        </a>
+
+    </td>
 </tr>
+
+
 </Table>
 </body>
 </html>
