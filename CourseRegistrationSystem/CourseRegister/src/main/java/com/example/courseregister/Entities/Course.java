@@ -26,10 +26,10 @@ public class Course implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    @Column(name="course_id")
+    @Column(name="course_id" ,nullable = false)
    private int id;
 
-    @Column(name="course_name")
+    @Column(name="course_name",nullable = false)
     private String courseName;
 
 

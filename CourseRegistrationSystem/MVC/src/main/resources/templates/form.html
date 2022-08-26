@@ -6,10 +6,13 @@
 </head>
 <body>
 
-<p th:text="${List}"/>
-<!--<div th:each="i:${List}">-->
-<!--    <p th:text="${i:firstName}"/>-->
-<!--    <p th:text="${i:lastName}"/>-->
+<!--<p th:text="${List}"/>-->
+
+<!--<div th:each="i:${map}">-->
+<!--    <p th:text="${i[1]}"/>-->
+
 <!--</div>-->
+<h2> hello</h2>
+<p th:text="${map[__${one}__]}"/>
 </body>
 </html>

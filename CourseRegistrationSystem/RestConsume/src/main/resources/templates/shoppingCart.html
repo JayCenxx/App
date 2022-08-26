@@ -5,14 +5,24 @@
     <title>Title</title>
 </head>
 <body>
+<h2> Courses Inside Your Shopping Cart</h2>
+<hr>
+
+<a th:href="@{/course/searCourse}"><input type="button" value="Go Back"/></a>
 <table>
-    <th>Key</th>
-    <th>Value</th>
+    <th>Key: </th>
+    <th>Course Name: </th>
+    <th>Teacher Name:</th>
+
 
     <tr th:each="i:${shoppingCart}">
         <td th:text="${i.key}"/>
-        <td th:text="${i.value}"/>
+        <td th:text="${i.value.courseName}"/>
+        <td th:text="${i.value.teacher.firstName}+' '+ ${i.value.teacher.lastName}"/>
+
+
     </tr>
+
 
 </table>
 
