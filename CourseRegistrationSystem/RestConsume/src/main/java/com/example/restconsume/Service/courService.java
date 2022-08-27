@@ -20,4 +20,15 @@ public class courService {
         Map<Integer, Course> shoppingCart = sc.getList(studentId);
         return shoppingCart;
     }
+
+    public Map<Integer,Course> getCourseFromCart(int studentId){
+        Map<Integer, Course> innerMap = sc.getList(studentId);
+        return innerMap;
+    }
+
+    public void deleteCourseFromCart(int courseId,int studentId){
+   sc.deleteCourseFromCart(courseId,studentId);
+    }
+
+
 }

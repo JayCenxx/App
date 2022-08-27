@@ -3,30 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title>course</title>
+
+    <script type="text/javascript" th:inline="javascript">
+
+        function info(){
+            alert('Course Has Added To Cart');
+        }
+    </script>
+
 </head>
 <body>
 <h2> Here are all the courses availiable</h2>
 <hr>
 
+<!--go back button-->
+<a th:href="@{/student/{id}(id=${student.id})}" th:insert="courseH::goback"/>
+
 <!--shopping cart button-->
-<a th:insert="courseH::shoppingcart"/>
+<a th:href="@{/course/shopping}"  th:insert="courseH::shoppingcart"/>
 
 <Table>
-<!--    th-->
-<div th:include="courseH::courseList"/>
+
+    <!--    th-->
+<span th:include="courseH::courseList"/>
 <th>Action:</th>
 
+<!--    the list-->
 <tr th:each="a, iter:${courses}">
     <td th:text="${a.courseName}"/>
     <td th:text="${a.teacher.firstName} +' '+ ${a.teacher.lastName}"/>
+
+
+
     <td>
         <a th:href="@{/course/shopping/{sid}/{cid} (sid=${student.id}, cid=${iter.index})} ">
-            <input type="button" value="Add Course"
-                   onclick="alert(' Course Added to Shopping Cart')">
+            <input type="button" value="Add To Cart"
+                   onclick="info()">
         </a>
-
     </td>
 </tr>
+
 
 
 </Table>

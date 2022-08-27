@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class studentController {
 
     //needed a list of register courses related by student ID
     @GetMapping("/{studentId}")
-    public String getStudentByID(Model m, @PathVariable int studentId) {
+    public String getStudentByID(Model m, @PathVariable int studentId, SessionStatus status) {
         Student student = apiC.getStudentById(studentId);
         m.addAttribute("student",student);
         System.out.println(student);

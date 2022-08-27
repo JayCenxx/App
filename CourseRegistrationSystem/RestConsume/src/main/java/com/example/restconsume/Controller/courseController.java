@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 import java.util.List;
 import java.util.Map;
 
@@ -19,7 +21,6 @@ import java.util.Map;
 
 @RequestMapping("/course")
 @Scope("session")
-//need to put "student" here inorder to transfer it over from studentController
 @SessionAttributes({"shoppingCart","courses", "student"})
 public class courseController {
     @Autowired
@@ -28,8 +29,7 @@ public class courseController {
    @Autowired
    private courService cs;
 
-   @Autowired
-   private shoppingCart sc;
+
 
 
     //needed all the courses
@@ -40,15 +40,20 @@ public class courseController {
         //get All courses
         List<Course> course = apiC.getCourse();
         m.addAttribute("courses",course);
-
+        m.addAttribute("student",s);
         return "searCourse";
     }
 
 
     @GetMapping("/shopping")
-    public String getshoppingCart(@SessionAttribute("shoppingCart") Map<Integer, Course> shoppingCart){
+    public String getshoppingCart(@SessionAttribute("student") Student s,Model m){
+    m.addAttribute("student",s);
+    Map<Integer, Course> sp = cs.getCourseFromCart(s.getId());
+    m.addAttribute("shoppingCart",sp);
         return "shoppingCart";
     }
+
+
 
 
     @GetMapping("/shopping/{studentId}/{courseId}")
@@ -57,9 +62,18 @@ public class courseController {
         //goal: access the map by its key, and send me back a list
 
         Map<Integer, Course> shoppingCart = cs.setshoppingCart(studentId, courseIndex,c);
-
         m.addAttribute("shoppingCart",shoppingCart);
-        System.out.println(shoppingCart);
+
+        return "searCourse";
+    }
+
+    @DeleteMapping("/shopping")
+    public String deleteFromCart(@RequestParam int key, @SessionAttribute("student")Student s,Model m){
+        m.addAttribute("student",s);
+    cs.deleteCourseFromCart(key,s.getId());
         return "shoppingCart";
     }
+
+
+
 }
