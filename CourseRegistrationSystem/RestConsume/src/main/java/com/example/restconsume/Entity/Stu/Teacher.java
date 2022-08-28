@@ -1,4 +1,4 @@
-package com.example.restconsume.Entity;
+package com.example.restconsume.Entity.Stu;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -19,12 +19,9 @@ import java.util.List;
 
 public class Teacher implements Serializable {
 
-
         private int id;
 
-
         private String firstName;
-
 
         private String lastName;
 

@@ -6,8 +6,8 @@
 
     <script type="text/javascript" th:inline="javascript">
 
-        function info(){
-            alert('Course Has Added To Cart');
+        function info(temp){
+            alert(temp+'  added to cart ');
         }
     </script>
 
@@ -25,12 +25,14 @@
 <Table>
 
     <!--    th-->
-<span th:include="courseH::courseList"/>
+    <div th:replace="courseH::courseTH"></div>
 <th>Action:</th>
 
 <!--    the list-->
 <tr th:each="a, iter:${courses}">
     <td th:text="${a.courseName}"/>
+
+<!--    i needed a if statement here if the teacher is null, then display null-->
     <td th:text="${a.teacher.firstName} +' '+ ${a.teacher.lastName}"/>
 
 
@@ -38,7 +40,7 @@
     <td>
         <a th:href="@{/course/shopping/{sid}/{cid} (sid=${student.id}, cid=${iter.index})} ">
             <input type="button" value="Add To Cart"
-                   onclick="info()">
+                   th:attr="onclick=|info('${a.courseName}')|" >
         </a>
     </td>
 </tr>

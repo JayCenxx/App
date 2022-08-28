@@ -9,9 +9,7 @@ import com.example.courseregister.Service.courService;
 import com.example.courseregister.Service.stuService;
 import com.example.courseregister.Service.teaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.List;
@@ -19,13 +17,13 @@ import java.util.List;
 @RestController
 public class RController {
     @Autowired
-    stuService IS;
+    private stuService IS;
 
     @Autowired
-    courService IC;
+    private courService IC;
 
     @Autowired
-    teaService IT;
+    private teaService IT;
 
     @GetMapping("/student")
     public List<Student> getAll(){
@@ -40,11 +38,24 @@ public class RController {
     return student;
     }
 
+//a student add one or multiple courses
+    @PostMapping("/student/{id}")
+    public void RegisterCourses(@PathVariable("id") int studentId,@RequestBody List<Course> cList){
+     IS.registerCourses(studentId,cList);
+    }
+
+
+
+
+
+
+
     @GetMapping("/course")
     public List<Course> getCourseAll(){
         List<Course> course = IC.getCourseAll();
         return course;
     }
+
 
     @GetMapping("/teacher")
     public List<Object> getTeacherAll(){

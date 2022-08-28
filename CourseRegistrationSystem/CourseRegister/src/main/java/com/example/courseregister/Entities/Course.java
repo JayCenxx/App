@@ -38,8 +38,8 @@ public class Course implements Serializable {
     }
 
 
-    @ManyToMany(mappedBy = "courseList",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    private List<Student> student;
+//    @ManyToMany(mappedBy = "courseList",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+//    private List<Student> student;
 
     @ManyToOne(fetch=FetchType.EAGER, cascade = {CascadeType.DETACH,CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name="teacher_teacher_id")
@@ -54,14 +54,23 @@ public class Course implements Serializable {
           teacher=t;
     }
 
-    //add a student to a course
-    public void setStudent(Student s){
-        if(student==null)
-            student=new ArrayList<>();
+//    //add a student to a course
+//    public void setStudent(Student s){
+//        if(student==null)
+//            student=new ArrayList<>();
+//
+//        student.add(s);
+//    }
 
-        student.add(s);
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "id=" + id +
+                ", courseName='" + courseName + '\'' +
+                ", teacher=" + teacher +
+                '}';
     }
-
 
     public Teacher getTeacher() {
         return teacher;

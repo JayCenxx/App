@@ -3,8 +3,7 @@ import com.example.restconsume.Entity.Stu.Course;
 import com.example.restconsume.Entity.Stu.Student;
 import feign.Headers;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,5 +21,8 @@ public Student getStudentById(@PathVariable int id);
     @Headers(value = "Content-Type: application/json")
      List<Course> getCourse();
 
+    @PostMapping("/student/{id}")
+    @ResponseBody
+    public void registerCourses(@PathVariable("id") int studentId,@RequestBody List<Course> cList);
 
 }

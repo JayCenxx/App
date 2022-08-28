@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -31,7 +32,6 @@ private String firstName;
 @Column(name="last_name")
 private String lastName;
 
-//
 //@Column(name="email")
 //private String email;
 
@@ -47,4 +47,32 @@ private List<Course> courseList;
         this.firstName = firstName;
         this.lastName = lastName;
     }
+
+    public boolean setCourseList(Course c){
+        //if the courseList is null, then initalize it
+        if (courseList==null) {
+            courseList = new ArrayList<>();
+        }
+     //check if the courseList is empty, add the elements
+                if ( !CLcontainId(courseList,c)) {
+                    courseList.add(c);
+                }else{
+                    System.out.println(c.getCourseName()+ " already exist");
+                }
+
+        return false;
+                                        }
+
+    public boolean CLcontainId(List<Course>a,Course b){
+        for(Course i:a){
+            //when ever courselist id == course id, that mean id exist
+        if(i.getId()==b.getId()){
+            return true;
+        }
+        }
+
+        return false;
+    }
+
+
 }

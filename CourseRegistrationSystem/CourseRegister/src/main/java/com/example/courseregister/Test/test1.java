@@ -29,7 +29,7 @@ public class test1 {
     public void save(){
         Course math = new Course("Math");
         Student student =new Student("Jan", "Cen");
-        math.setStudent(student);
+//        math.setStudent(student);
         IC.save(math);
     }
 
@@ -48,12 +48,11 @@ public class test1 {
 
     }
 
-//    @Test
-//    public void getCourse(){
-//        Optional<Teacher> a= IT.findById(1);
-//        Teacher c=a.get();
-//        System.out.println(c);
-//
-//    }
+    @Test
+    public void getCourse(){
+        List<Course> all = IC.findAll();
+       all.forEach(p-> System.out.println(p));
+
+    }
 
 }

@@ -3,24 +3,19 @@ package com.example.restconsume.Controller;
 import com.example.restconsume.Entity.Stu.Course;
 import com.example.restconsume.Entity.Stu.Student;
 import com.example.restconsume.Feign.apiController;
-import com.example.restconsume.Service.Beans.shoppingCart;
 import com.example.restconsume.Service.courService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.PostConstruct;
-import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 @Controller
 
 @RequestMapping("/course")
-@Scope("session")
 @SessionAttributes({"shoppingCart","courses", "student"})
 public class courseController {
     @Autowired
@@ -41,6 +36,7 @@ public class courseController {
         List<Course> course = apiC.getCourse();
         m.addAttribute("courses",course);
         m.addAttribute("student",s);
+        System.out.println(course);
         return "searCourse";
     }
 
@@ -53,7 +49,16 @@ public class courseController {
         return "shoppingCart";
     }
 
+    @PostMapping("/shopping")
+    public String registerCourse(@SessionAttribute("student") Student s,
+ @SessionAttribute("shoppingCart") Map<Integer, Course> map,Model m){
+//convert map to list
+       List<Course> courses = new ArrayList<>(map.values());
+       //set it
+        apiC.registerCourses(s.getId(),courses);
 
+        return "successful";
+    }
 
 
     @GetMapping("/shopping/{studentId}/{courseId}")
@@ -64,15 +69,16 @@ public class courseController {
         Map<Integer, Course> shoppingCart = cs.setshoppingCart(studentId, courseIndex,c);
         m.addAttribute("shoppingCart",shoppingCart);
 
-        return "searCourse";
+        return "redirect:/course/searCourse";
     }
 
     @DeleteMapping("/shopping")
     public String deleteFromCart(@RequestParam int key, @SessionAttribute("student")Student s,Model m){
         m.addAttribute("student",s);
     cs.deleteCourseFromCart(key,s.getId());
-        return "shoppingCart";
+        return "redirect:/course/shopping";
     }
+
 
 
 

@@ -11,13 +11,10 @@
 
 <a th:href="@{/course/searCourse}">  <input type="button" value="Search Courses"> </a>
 
-<a th:href="@{/course/shopping}"  th:insert="courseH::shoppingcart"/>
-
 
 <Table >
+<div th:replace="courseH::courseTH"></div>
 
-<!--    th-->
-    <div th:include="courseH::courseList"/>
 <th>Action:</th>
 
 <tr th:each="a:${student.getCourseList()}">
