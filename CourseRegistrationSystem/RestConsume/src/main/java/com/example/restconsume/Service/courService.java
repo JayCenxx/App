@@ -30,5 +30,8 @@ public class courService {
    sc.deleteCourseFromCart(courseId,studentId);
     }
 
+    public void deleteAllFromCart(int studentId){
+        sc.deleteAllFromCart(studentId);
+    }
 
 }

@@ -93,10 +93,21 @@ public boolean isOutMapDontcontainstuID(int studentId){
         catch (Exception e){
             System.out.println(e);
         }
+
+
     }
 
-
-
+    public void deleteAllFromCart(int studentId){
+        try{
+            isStuMapEmpty(studentId);
+            if(!shoppingCart.isEmpty()){
+                shoppingCart.get(studentId).clear();
+            }
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+    }
 
 
 

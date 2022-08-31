@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -52,10 +51,10 @@ public class studentController {
     }
 
     @PostMapping("/registration")
-    public String registerACourse(@SessionAttribute("student") Student s,
+    public String registerCourses(@SessionAttribute("student") Student s,
                                   @SessionAttribute("shoppingCart") Map<Integer, Course> map, Model m){
         //convert map to list
-        SS.registerACourse(s,map);
+        SS.registerCourses(s,map);
         m.addAttribute("shoppingCart",map);
 
         return "redirect:/student/sucessful";

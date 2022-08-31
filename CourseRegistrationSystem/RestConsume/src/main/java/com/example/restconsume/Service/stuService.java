@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +18,8 @@ public class stuService {
     @Autowired
     apiController apiC;
 
+    @Autowired
+    courService courS;
 
     public List<Student> getStudentAll() {
         List<Student> studentList = apiC.getAll();
@@ -30,12 +33,12 @@ public class stuService {
     }
 
 
-    public void registerACourse(Student s,
+    public void registerCourses(Student s,
                                   Map<Integer, Course> map ){
 
-        List<Course> courses = new ArrayList<>(map.values());
+        List<Course> courses = new LinkedList<>(map.values());
         apiC.registerCourses(s.getId(),courses);
-
+        courS.deleteAllFromCart(s.getId());
 
     }
 
