@@ -11,30 +11,31 @@
         }
     </script>
 
+    <link th:replace="courseH::bootstrap"/>
 </head>
 <body>
+
+<section class="container">
 <h2> Here are all the courses availiable</h2>
 <hr>
-
 <!--regCourse button-->
 <a th:href="@{/student/{id}(id=${student.id})}" th:insert="courseH::goback"/>
 
 <!--shopping cart button-->
 <a th:href="@{/course/shopping}"  th:insert="courseH::shoppingcart"/>
 
-<Table>
-
+<Table class=" table table-hover">
+    <thead class="table-dark">
     <!--    th-->
     <div th:replace="courseH::courseTH"></div>
 <th>Action:</th>
-
+</thead>
 <!--    the list-->
 <tr th:each="a, iter:${courses}">
     <td th:text="${a.courseName}"/>
 
 <!--    i needed a if statement here if the teacher is null, then display null-->
     <td th:text="${a.teacher.firstName} +' '+ ${a.teacher.lastName}"/>
-
 
 
     <td>
@@ -44,9 +45,8 @@
         </a>
     </td>
 </tr>
-
-
-
 </Table>
+</section>
+
 </body>
 </html>

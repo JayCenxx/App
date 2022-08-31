@@ -47,8 +47,9 @@ public class courseController {
     }
 
 
+    //add to shopping cart
     @GetMapping("/shopping/{studentId}/{courseId}")
-    public String setshoppingCart(@PathVariable int studentId, @PathVariable("courseId") int courseIndex,
+    public String addtoshoppingCart(@PathVariable int studentId, @PathVariable("courseId") int courseIndex,
                                   Model m, @SessionAttribute("courses") List<Course> c) {
         //goal: access the map by its key, and send me back a list
 
@@ -57,6 +58,7 @@ public class courseController {
         return "redirect:/course/searCourse";
     }
 
+    //delete one row from cart
     @DeleteMapping("/shopping")
     public String deleteFromCart(@RequestParam int key, @SessionAttribute("student") Student s, Model m) {
         m.addAttribute("student", s);

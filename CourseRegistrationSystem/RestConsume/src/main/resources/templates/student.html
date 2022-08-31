@@ -3,15 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Student</title>
+    <link th:replace="courseH::bootstrap"/>
+
 </head>
 <body>
 
+    <section class="container">
 <h2> Juny First Course Registration</h2>
 <hr>
-<table>
-    <th>First Name: </th>
-    <th>Last Name: </th>
-    <th>ID:</th>
+
+<table class=" table table-hover">
+    <thead class="table-dark">
+        <th>First Name: </th>
+        <th>Last Name: </th>
+        <th>ID:</th>
+        <th>Action:</th>
+    </thead>
     <tr th:each ="i:${students}">
         <td th:text="${i.firstName}"/>
         <td th:text="${i.lastName}"/>
@@ -24,5 +31,7 @@
     </tr>
 
 </table>
+    </section>
+
 </body>
 </html>

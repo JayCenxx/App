@@ -61,16 +61,21 @@ public class studentController {
     }
 
     @DeleteMapping ("/registration/{courseId}")
-    public String deleteACourse(Model m, @SessionAttribute("student") Student s,@PathVariable int courseId){
+    public String deleteACourse(@SessionAttribute("student") Student s,@PathVariable int courseId){
         System.out.println(courseId);
         SS.deleteACourse(s.getId(),courseId);
-        return "redirect:/student/sucessful";
+        return "redirect:/student/"+s.getId();
     }
 
     @GetMapping("sucessful")
-    public String Successful(){
+    public String RegisterSuccessful(){
         return "successful";
     }
+
+//    @GetMapping("coursedrop")
+//    public String DropSuccessful(){
+//        return "dropcourse";
+//    }
 
 }
 
