@@ -39,5 +39,10 @@ public class apiController implements apiService{
 
     }
 
+    @Override
+    public void dropACourse(@PathVariable("id") int studentId,@PathVariable("cid")int courseId){
+proxy.dropACourse(studentId,courseId);
+    }
+
 
 }

@@ -17,7 +17,7 @@ import java.util.Optional;
 @SpringBootTest
 public class test1 {
     @Autowired
-    IStudentRepo SR;
+    IStudentRepo IS;
 
     @Autowired
     ITeacher IT;
@@ -53,6 +53,15 @@ public class test1 {
         List<Course> all = IC.findAll();
        all.forEach(p-> System.out.println(p));
 
+    }
+
+
+    //this is the method to drop a course (delete a row in join-table)
+    @Test
+    public void StuDropACourse(){
+        Student student = IS.findById(10).get();
+    student.getCourseList().remove(1);
+IS.save(student);
     }
 
 }

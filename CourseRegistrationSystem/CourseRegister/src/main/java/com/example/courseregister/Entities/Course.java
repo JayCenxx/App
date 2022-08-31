@@ -41,7 +41,7 @@ public class Course implements Serializable {
 //    @ManyToMany(mappedBy = "courseList",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 //    private List<Student> student;
 
-    @ManyToOne(fetch=FetchType.EAGER, cascade = {CascadeType.DETACH,CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToOne(fetch=FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name="teacher_teacher_id")
     private Teacher teacher;
 
@@ -53,15 +53,6 @@ public class Course implements Serializable {
         if(t!=null)
           teacher=t;
     }
-
-//    //add a student to a course
-//    public void setStudent(Student s){
-//        if(student==null)
-//            student=new ArrayList<>();
-//
-//        student.add(s);
-//    }
-
 
     @Override
     public String toString() {

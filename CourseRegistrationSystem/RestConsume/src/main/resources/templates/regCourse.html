@@ -20,9 +20,14 @@
 <tr th:each="a:${student.getCourseList()}">
     <td th:text="${a.courseName}"/>
     <td th:text="${a.teacher.firstName} +' '+ ${a.teacher.lastName}"/>
+
     <td>
-        <input type="button" value="Drop Courses">
+        <form action="#" th:action="@{/student/registration/{id} (id=${a.id}) } " th:method="DELETE" >
+
+<input type="submit" value="Drop Courses" onclick="return confirm('Are You Sure you want to Drop this Course?')">
+        </form>
     </td>
+
 </tr>
 
     </Table>

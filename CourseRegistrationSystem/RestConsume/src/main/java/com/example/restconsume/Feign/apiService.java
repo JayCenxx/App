@@ -22,7 +22,8 @@ public Student getStudentById(@PathVariable int id);
      List<Course> getCourse();
 
     @PostMapping("/student/{id}")
-    @ResponseBody
     public void registerCourses(@PathVariable("id") int studentId,@RequestBody List<Course> cList);
 
+    @DeleteMapping("student/{id}/{cid}")
+    public void dropACourse(@PathVariable("id") int studentId,@PathVariable("cid")int courseId);
 }

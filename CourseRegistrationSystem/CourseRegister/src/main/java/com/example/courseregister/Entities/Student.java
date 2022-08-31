@@ -10,6 +10,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 @Getter
@@ -36,7 +37,7 @@ private String lastName;
 //private String email;
 
     @JsonIdentityReference
-@ManyToMany(fetch=FetchType.LAZY,  cascade = {CascadeType.DETACH,CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+@ManyToMany(fetch=FetchType.EAGER,  cascade = {CascadeType.DETACH,CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
 @JoinTable(name="student_has_course",
         joinColumns = @JoinColumn(name="student_idstudent"),
         inverseJoinColumns = @JoinColumn(name="course_idcourse"))
@@ -51,7 +52,7 @@ private List<Course> courseList;
     public boolean setCourseList(Course c){
         //if the courseList is null, then initalize it
         if (courseList==null) {
-            courseList = new ArrayList<>();
+            courseList = new LinkedList<>();
         }
      //check if the courseList is empty, add the elements
                 if ( !CLcontainId(courseList,c)) {

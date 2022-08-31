@@ -44,10 +44,10 @@ public class RController {
      IS.registerCourses(studentId,cList);
     }
 
-
-
-
-
+    @DeleteMapping("/student/{id}/{cid}")
+    public void dropACourse(@PathVariable("id") int studentId,@PathVariable("cid")int courseId){
+    IS.dropACourse(studentId,courseId);
+    }
 
 
     @GetMapping("/course")

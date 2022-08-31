@@ -25,16 +25,21 @@
         <form style="block: inline" action="#" th:action="@{/course/shopping/(key=${i.key})}"   th:method="delete">
             <input type="submit" value="Delete From Cart"/>
         </form></td>
+
+    </tr>
+    <tr>
+        <td/>
+        <td/>
+        <td>
+            <form style="display:inline" action="#" th:action="@{/student/registration}" th:method="POST">
+                <input type="submit" value="Register Courses"/>
+            </form>
+        </td>
+        <td/>
     </tr>
 
-    <form action="#" th:action="@{/course/shopping}" th:method="post">
-        <input type="submit" value="Register Courses"/>
-    </form>
-
-
-
-
 </table>
+
 
 </body>
 </html>

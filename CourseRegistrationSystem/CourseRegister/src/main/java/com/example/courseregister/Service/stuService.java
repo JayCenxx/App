@@ -15,8 +15,11 @@ public class stuService {
     @Autowired
     private IStudentRepo IS;
 
+@Autowired
+    ICourse IC;
+
     @Autowired
-    private ICourse IC;
+    private courService CService;
 
     public List<Student> findStudentAll(){
         List<Student> all = IS.findAll();
@@ -38,7 +41,15 @@ public class stuService {
             System.out.println(i);
         }
           IS.save(student);
-
-
     }
+
+    public void dropACourse(int studentId, int courseId){
+        Student student = IS.findById(studentId).get();
+        Course course = IC.findById(courseId).get();
+student.getCourseList().remove(course);
+        IS.save(student);
+    }
+
+
+
 }

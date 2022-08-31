@@ -21,10 +21,8 @@ public class courseController {
     @Autowired
     private apiController apiC;
 
-   @Autowired
-   private courService cs;
-
-
+    @Autowired
+    private courService cs;
 
 
     //needed all the courses
@@ -34,52 +32,38 @@ public class courseController {
     public String searCourse(Model m, @SessionAttribute("student") Student s) {
         //get All courses
         List<Course> course = apiC.getCourse();
-        m.addAttribute("courses",course);
-        m.addAttribute("student",s);
+        m.addAttribute("courses", course);
+        m.addAttribute("student", s);
         System.out.println(course);
         return "searCourse";
     }
 
 
     @GetMapping("/shopping")
-    public String getshoppingCart(@SessionAttribute("student") Student s,Model m){
-    m.addAttribute("student",s);
-    Map<Integer, Course> sp = cs.getCourseFromCart(s.getId());
-    m.addAttribute("shoppingCart",sp);
+    public String getshoppingCart(@SessionAttribute("student") Student s, Model m) {
+        Map<Integer, Course> sp = cs.getCourseFromCart(s.getId());
+        m.addAttribute("shoppingCart", sp);
         return "shoppingCart";
-    }
-
-    @PostMapping("/shopping")
-    public String registerCourse(@SessionAttribute("student") Student s,
- @SessionAttribute("shoppingCart") Map<Integer, Course> map,Model m){
-//convert map to list
-       List<Course> courses = new ArrayList<>(map.values());
-       //set it
-        apiC.registerCourses(s.getId(),courses);
-
-        return "successful";
     }
 
 
     @GetMapping("/shopping/{studentId}/{courseId}")
     public String setshoppingCart(@PathVariable int studentId, @PathVariable("courseId") int courseIndex,
-                                  Model m, @SessionAttribute("courses") List<Course>c){
+                                  Model m, @SessionAttribute("courses") List<Course> c) {
         //goal: access the map by its key, and send me back a list
 
-        Map<Integer, Course> shoppingCart = cs.setshoppingCart(studentId, courseIndex,c);
-        m.addAttribute("shoppingCart",shoppingCart);
+        Map<Integer, Course> shoppingCart = cs.setshoppingCart(studentId, courseIndex, c);
 
         return "redirect:/course/searCourse";
     }
 
     @DeleteMapping("/shopping")
-    public String deleteFromCart(@RequestParam int key, @SessionAttribute("student")Student s,Model m){
-        m.addAttribute("student",s);
-    cs.deleteCourseFromCart(key,s.getId());
+    public String deleteFromCart(@RequestParam int key, @SessionAttribute("student") Student s, Model m) {
+        m.addAttribute("student", s);
+        cs.deleteCourseFromCart(key, s.getId());
         return "redirect:/course/shopping";
     }
 
 
-
-
 }
+

@@ -1,11 +1,12 @@
-package com.example.mvc;
+package com.example.mvc.controller;
+import com.example.mvc.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@SessionAttributes("one")
+@SessionAttributes({"three"})
 public class shoppingCart {
 
 @Autowired
@@ -13,18 +14,8 @@ service se;
 
 @GetMapping("/")
     public String getSession(Model m){
-    m.addAttribute("one",1000);
-    return "forward:/student";
+   m.addAttribute("three",300);
+    return "form";
                     }
-
-@GetMapping("/student")
-    public String setSession() {
-return "forward:/student2";
-}
-
-    @GetMapping("/student2")
-    public String student2() {
-        return "home";
-    }
 
 }

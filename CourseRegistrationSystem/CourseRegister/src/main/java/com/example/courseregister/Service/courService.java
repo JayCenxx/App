@@ -4,6 +4,7 @@ import com.example.courseregister.Repo.ICourse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class courService {
@@ -17,6 +18,9 @@ public class courService {
         return course;
     }
 
-
+public Course findCourseById(int courseId){
+    Course course = IC.findById(courseId).get();
+   return course;
+}
 
 }
