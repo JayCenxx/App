@@ -72,10 +72,7 @@ public class studentController {
         return "successful";
     }
 
-//    @GetMapping("coursedrop")
-//    public String DropSuccessful(){
-//        return "dropcourse";
-//    }
+
 
 }
 
