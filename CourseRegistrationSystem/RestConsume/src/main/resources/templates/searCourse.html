@@ -16,13 +16,15 @@
 <body>
 
 <section class="container">
-<h2> Here are all the courses availiable</h2>
+<h2 class="display-5 text-center"> Here are all the courses availiable</h2>
 <hr>
 <!--regCourse button-->
 <a th:href="@{/student/{id}(id=${student.id})}" th:insert="courseH::goback"/>
 
 <!--shopping cart button-->
 <a th:href="@{/course/shopping}"  th:insert="courseH::shoppingcart"/>
+
+
 
 <Table class=" table table-hover">
     <thead class="table-dark">
@@ -37,10 +39,9 @@
 <!--    i needed a if statement here if the teacher is null, then display null-->
     <td th:text="${a.teacher.firstName} +' '+ ${a.teacher.lastName}"/>
 
-
     <td>
         <a th:href="@{/course/shopping/{sid}/{cid} (sid=${student.id}, cid=${iter.index})} ">
-            <input type="button" value="Add To Cart"
+            <input class="btn btn-outline-dark" type="button" value="Add To Cart"
                    th:attr="onclick=|info('${a.courseName}')|" >
         </a>
     </td>

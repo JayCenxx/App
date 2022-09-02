@@ -8,10 +8,12 @@
 <body>
 
 <section class="container">
-<h2>Registered Courses:</h2>
+<h2 class="display-5 text-center">Registered Courses:</h2>
+    <hr>
 <a th:href="@{/student}" th:insert="courseH::goback"/>
 
-<a th:href="@{/course/searCourse}">  <input type="button" value="Search Courses"> </a>
+<!--    search course button-->
+<a th:href="@{/course/searCourse}">  <input class="btn btn-outline-success  " type="button" value="Search Courses"> </a>
 
 
 <Table class=" table table-hover">
@@ -23,9 +25,12 @@
     <tr th:each="a:${student.getCourseList()}">
         <td th:text="${a.courseName}"/>
         <td th:text="${a.teacher.firstName} +' '+ ${a.teacher.lastName}"/>
+
+<!--        drop course button-->
         <td>
             <form action="#" th:action="@{/student/registration/{id} (id=${a.id}) } " th:method="DELETE" >
-        <input type="submit" value="Drop Courses" onclick="return confirm('Are You Sure you want to Drop this Course?')">
+        <input class="btn btn-outline-dark" type="submit" value="Drop Courses" onclick="return
+        confirm('Are You Sure you want to Drop this Course?')">
             </form>
         </td>
     </tr>

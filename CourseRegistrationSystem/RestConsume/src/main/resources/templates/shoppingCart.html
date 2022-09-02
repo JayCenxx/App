@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link th:href="@{/css/general.css}" rel='stylesheet'>
     <link th:replace="courseH::bootstrap"/>
+
 </head>
 
-
 <body>
+
+
 <section class="container">
-<h2> Courses Inside Your Shopping Cart</h2>
+<h2 class="display-5 text-center"> Courses Inside Your Shopping Cart</h2>
 <hr>
 
-<!--<a th:href="@{/student/{id} (id=${student.id}) }"> <button>Back to Register</button> </a>-->
-<!--<a th:href="@{/course/searCourse}"> <button>Back to Search</button> </a>-->
 <a th:href="@{/course/searCourse}" th:insert="courseH::goback"/>
-<Table class=" table table-hover">
+<Table class=" table table-hover" th:if="${!(#maps.isEmpty(shoppingCart))}">
     <thead class="table-dark">
     <th>CourseId:</th>
     <div th:replace="courseH::courseTH"></div>
@@ -25,22 +26,34 @@
         <td th:text="${i.key}"/>
         <td th:text="${i.value.courseName}"/>
         <td th:text="${i.value.teacher.firstName}+' '+ ${i.value.teacher.lastName}"/>
+
+<!--delete button-->
         <td>
-            <form style="block: inline" action="#" th:action="@{/course/shopping/(key=${i.key})}"   th:method="delete">
-                <input type="submit" value="Delete From Cart"/>
+            <form  style="block: inline" action="#"
+                  th:action="@{/course/shopping/(key=${i.key})}"
+                  th:method="delete">
+                <input class="btn btn-outline-dark" type="submit" value="Delete From Cart"/>
             </form></td>
     </tr>
     <tr >
         <td/> <td/> <td/>
-        <td>
+
+
+<!--        register button-->
+        <td >
             <form class="align-bottom"  action="#"
                   th:action="@{/student/registration}"
                   th:method="POST">
-                <input type="submit" value="Register Courses"/>
+                <input class="btn btn-outline-dark" type="submit" value="Register Courses"/>
             </form>
         </td>
     </tr>
 </table>
+
+<!--    the bootstrap alert-->
+<div  th:if="${#maps.isEmpty(shoppingCart)}"
+        class="alert alert-danger text-center font">Ops, Your Shopping Cart is Empty!</div>
+
 </section>
 
 

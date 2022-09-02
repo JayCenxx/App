@@ -50,10 +50,10 @@ public class studentController {
         return "redirect:/student/regCourse";
     }
 
+    //register all the courses inside cart
     @PostMapping("/registration")
     public String registerCourses(@SessionAttribute("student") Student s,
                                   @SessionAttribute("shoppingCart") Map<Integer, Course> map, Model m){
-        //convert map to list
         SS.registerCourses(s,map);
         m.addAttribute("shoppingCart",map);
 
