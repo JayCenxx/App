@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(name="service", url="http://localhost:80/")
+@FeignClient(name="service", url="http://localhost:8080", configuration = proConfiguration.class)
 public interface apiService {
 
 @GetMapping(value = "/student")

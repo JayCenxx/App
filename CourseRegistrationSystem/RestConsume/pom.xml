@@ -13,9 +13,11 @@
         <version>0.0.1-SNAPSHOT</version>
         <name>RestConsume</name>
         <description>RestConsume</description>
+    <packaging>war</packaging>
         <properties>
-            <java.version>17</java.version>
+            <java.version>8</java.version>
             <spring-cloud.version>2021.0.3</spring-cloud.version>
+
         </properties>
         <dependencies>
             <dependency>
@@ -72,6 +74,11 @@
                 <artifactId>lombok</artifactId>
                 <optional>true</optional>
             </dependency>
+
+
+            <!-- https://mvnrepository.com/artifact/org.springframework.security.oauth/spring-security-oauth2 -->
+
+
         </dependencies>
         <dependencyManagement>
             <dependencies>
